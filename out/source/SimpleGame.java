@@ -17,6 +17,18 @@ public class SimpleGame extends PApplet {
 
 // Blackjack in processing
 
+boolean startscreen = true;
+
+String[]
+    names = {"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
+
+String[]
+    suits = {"S","H","C","D"};
+
+// load card images
+PShape[]
+    cards = new PShape[52];
+
  public void setup() {
     background(48, 91, 65);
     /* size commented out by preprocessor */;
@@ -27,6 +39,31 @@ public class SimpleGame extends PApplet {
     textAlign(CENTER);
     text("Blackjack", width/2, 50);
     text("Press any key to start", width/2, 100);
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 13; j++) {
+            cards[i*13+j] = loadShape(names[j] + suits[i] + ".svg");
+        }
+    }
+        }
+
+ public void draw() {}
+
+ public void keyPressed() {
+    if (startscreen) {
+        // clear screen
+        background(48, 91, 65);
+        blackjack();
+    }
+}
+
+ public void blackjack() {
+    startscreen = false;
+    // clear screen
+    background(48, 91, 65);
+    // draw cards
+    for (int i = 0; i < 52; i++) {
+        shape(cards[i], i*20, 0);
+    }
 }
 
 
