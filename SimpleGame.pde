@@ -40,7 +40,7 @@ boolean diagonalOneBlank = true;
 boolean diagonalTwoBlank = true;
 boolean start = true;
 
-// boolean value to check if someone has won
+// boolean value to check if someone has won (set as true to start (due to start screen))
 boolean win = true;
 
 // Setup function
@@ -207,10 +207,12 @@ void mousePressed() {
     else {
         // check if someone clicks the restart button
         if (mouseX > WIDTH/2 - 100 && mouseX < WIDTH/2 + 100 && mouseY > HEIGHT/2 + 50 && mouseY < HEIGHT/2 + 100) {
+            // start screen
             if (start) {
                 win = false;
                 drawBoard();
             }
+            // play again screen
             else {
                 resetGame();
             }
