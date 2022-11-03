@@ -38,15 +38,16 @@ boolean columnTwoBlank = true;
 boolean columnThreeBlank = true;
 boolean diagonalOneBlank = true;
 boolean diagonalTwoBlank = true;
+boolean start = true;
 
 // boolean value to check if someone has won
-boolean win = false;
+boolean win = true;
 
 // Setup function
 void setup() {
     // create the board & window
     size(500, 500);
-    drawBoard();
+    startScreen();
 }
 
 // Draw function
@@ -206,7 +207,14 @@ void mousePressed() {
     else {
         // check if someone clicks the restart button
         if (mouseX > WIDTH/2 - 100 && mouseX < WIDTH/2 + 100 && mouseY > HEIGHT/2 + 50 && mouseY < HEIGHT/2 + 100) {
-            resetGame();
+            if (start) {
+                win = false;
+                drawBoard();
+            }
+            else {
+                resetGame();
+            }
+
         }
     }
 }
@@ -395,4 +403,28 @@ void resetGame() {
     println("game reset");
     // draw the board
     drawBoard();
+}
+
+// draw the start screen
+void startScreen() {
+    // set background color to white
+    background(255);
+    // set text color to black
+    fill(0);
+    // set text size to 50
+    textSize(30);
+    // display the welcome message
+    textAlign(CENTER);
+    text("Welcome to Tic-Tac-Toe!", WIDTH/2, HEIGHT/2 - 100);
+    // display start button
+    rect(WIDTH/2 - 100, HEIGHT/2 + 50, 200, 50);
+    fill(255);
+    textSize(30);
+    text("Start", WIDTH/2, HEIGHT/2 + 85);
+    // display description at bottom of screen
+    fill(0);
+    textSize(20);
+    text("This is a two player version of the popular tic-tac-toe game.", WIDTH/2, HEIGHT - 20);
+    fill(255);
+    start = false;
 }
